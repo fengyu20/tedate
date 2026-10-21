@@ -1,0 +1,6 @@
+{
+  "name": "tedate",
+  "description": "Tedate: a product-judgment skill for coding agents.",
+  "owner": { "name": "fengyu20" },
+  "plugins": [{ "name": "tedate", "source": "./" }]
+}

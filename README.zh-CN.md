@@ -75,53 +75,57 @@ Tedate 就是为这些时刻写的。它帮你把判断说清楚：这里什么�
 
 ## 安装
 
-克隆本仓库（或下载 zip），然后打开存放 `SKILL.md` 的文件夹：
+### Claude Code（插件方式）
+
+```bash
+claude plugin marketplace add fengyu20/tedate
+claude plugin install tedate@tedate
+```
+
+在新会话里输入（插件里的 skill 会带上插件名作为前缀）：
+
+```text
+/tedate:tedate 这个页面看着不对,但我说不出哪里不对。
+```
+
+当你的请求符合它的描述时，它也可能自动触发。
+
+### 或者复制 skill 文件夹（Claude Code 或 Codex）
+
+克隆本仓库（或下载 zip），然后把 `skills/tedate` 复制到你的 skills 目录。文件夹必须仍叫 `tedate`。
 
 ```bash
 git clone https://github.com/fengyu20/tedate.git
 cd tedate
 ```
 
-把 `SKILL.md`、`references/` 和 `LICENSE` 一起复制过去。目标文件夹必须叫 `tedate`。
-
-### Claude Code
+Claude Code：
 
 ```bash
-mkdir -p ~/.claude/skills/tedate
-cp -R SKILL.md LICENSE references ~/.claude/skills/tedate/
+mkdir -p ~/.claude/skills
+cp -R skills/tedate ~/.claude/skills/
 ```
 
-在新会话里输入：
+然后输入 `/tedate 这个页面看着不对,但我说不出哪里不对。`
 
-```text
-/tedate 这个页面看着不对,但我说不出哪里不对。
-```
-
-当你的请求符合它的描述时，它也可能自动触发。
-
-### Codex
+Codex：
 
 ```bash
-mkdir -p ~/.agents/skills/tedate
-cp -R SKILL.md LICENSE references ~/.agents/skills/tedate/
+mkdir -p ~/.agents/skills
+cp -R skills/tedate ~/.agents/skills/
 ```
 
-然后输入：
-
-```text
-$tedate 这个页面看着不对,但我说不出哪里不对。
-```
-
-如果没有出现，重启 Codex。
+然后输入 `$tedate 这个页面看着不对,但我说不出哪里不对。` 如果没有出现，重启 Codex。
 
 Tedate 开头会先说明自己处于哪种模式：`advise`、`delegate` 或 `execute`。这是它被用上的一个迹象；更重要的是，它的建议能否帮你做出实际的决定。
 
-更新时，如果你克隆了仓库，先 pull，再把文件重新复制一遍。要卸载，删掉 skills 目录里的 `tedate` 文件夹。
+更新插件：运行 `claude plugin update tedate@tedate`；卸载：`claude plugin uninstall tedate@tedate`。如果你是复制文件夹安装的，先 pull 仓库，再把 `skills/tedate` 重新复制一遍；要卸载，删掉 skills 目录里的 `tedate` 文件夹。
 
 ## 使用前须知
 
 - **它的判断可能出错。** 要求给出来源和日期，并不能保证事实本身是对的。拍板的是你。
-- **交接取决于你的环境。** 其他 skill 是可选的，它们是否遵循交接，取决于那个 skill 和你的环境。[为什么要交接](#让目标贯穿整个构建)。Tedate 和已有的产品、设计类 skill（比如 [Impeccable](https://github.com/pbakaus/impeccable)、[gstack](https://github.com/garrytan/gstack)、各种 PM skill 包）有重叠。
+- **交接取决于你的环境。** 其他 skill 是可选的，它们是否遵循交接，取决于那个 skill 和你的环境。[为什么要交接](#让目标贯穿整个构建)。Tedate 和已有的产品、设计类 skill（比如 [Impeccable](https://github.com/pbakaus/impeccable)、[gstack](https://github.com/garrytan/gstack)、各种 PM skill 包）有重叠。 Tedate 只会交给你已安装的 skill，是否安装由你决定。
+- **它读什么、写什么。** 它会读你的项目文件、git 历史和你指向的分析数据，也可能让你的 agent 查询公开资料。只有你同意时才会写决定记录。它不带任何脚本，自己也不会把数据发到任何地方；要把你的想法发给第三方服务，需要你再次同意。
 - **范围是产品判断。** 它不管发布流程、版本号或合并冲突，不执行针对具体渠道的营销活动，也不产出 PRD 或路线图。
 - **花钱、发布等操作仍由你把关。** 它被要求在没有你明确同意时不花钱、不发布、不部署，并且从不替你联系任何人。这些是写在提示里的规则，不是技术上的保障。
 

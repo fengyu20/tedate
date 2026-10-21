@@ -73,53 +73,57 @@ For work across sessions, Tedate keeps accepted decisions in a short record in y
 
 ## Install
 
-Clone this repository (or download it as a zip), then open the folder containing `SKILL.md`:
+### Claude Code (plugin)
+
+```bash
+claude plugin marketplace add fengyu20/tedate
+claude plugin install tedate@tedate
+```
+
+In a new session (a plugin's skills carry the plugin name as a prefix):
+
+```text
+/tedate:tedate This page looks off, but I can't say why.
+```
+
+It may also trigger when your request matches its description.
+
+### Or copy the skill folder (Claude Code or Codex)
+
+Clone this repository (or download it as a zip), then copy `skills/tedate` into your skills directory. The folder must stay named `tedate`.
 
 ```bash
 git clone https://github.com/fengyu20/tedate.git
 cd tedate
 ```
 
-Copy `SKILL.md`, `references/` and `LICENSE` together. The destination folder must be named `tedate`.
-
-### Claude Code
+Claude Code:
 
 ```bash
-mkdir -p ~/.claude/skills/tedate
-cp -R SKILL.md LICENSE references ~/.claude/skills/tedate/
+mkdir -p ~/.claude/skills
+cp -R skills/tedate ~/.claude/skills/
 ```
 
-In a new session:
+Then `/tedate This page looks off, but I can't say why.`
 
-```text
-/tedate This page looks off, but I can't say why.
-```
-
-It may also trigger when your request matches its description.
-
-### Codex
+Codex:
 
 ```bash
-mkdir -p ~/.agents/skills/tedate
-cp -R SKILL.md LICENSE references ~/.agents/skills/tedate/
+mkdir -p ~/.agents/skills
+cp -R skills/tedate ~/.agents/skills/
 ```
 
-Then:
-
-```text
-$tedate This page looks off, but I can't say why.
-```
-
-If it does not appear, restart Codex.
+Then `$tedate This page looks off, but I can't say why.` If it does not appear, restart Codex.
 
 Tedate opens by naming its mode: `advise`, `delegate` or `execute`. That is a sign it was used; the useful check is whether its advice helps you make a real decision.
 
-To update, pull the repository if you cloned it, then copy the files again. To uninstall, remove the `tedate` folder from your skills directory.
+To update the plugin, run `claude plugin update tedate@tedate`; to uninstall it, `claude plugin uninstall tedate@tedate`. If you copied the folder, pull the repository and copy `skills/tedate` again; to uninstall, remove the `tedate` folder from your skills directory.
 
 ## Good to know
 
 - **Its judgment can be wrong.** Asking for sources and dates does not make the underlying facts correct. You make the call.
-- **Hand-offs depend on your setup.** Other skills are optional, and whether one follows a hand-off depends on that skill and your environment. [Why Tedate hands off](#keep-the-purpose-through-the-build). Tedate overlaps with existing product and design skills such as [Impeccable](https://github.com/pbakaus/impeccable), [gstack](https://github.com/garrytan/gstack) and PM skill packs.
+- **Hand-offs depend on your setup.** Other skills are optional, and whether one follows a hand-off depends on that skill and your environment. [Why Tedate hands off](#keep-the-purpose-through-the-build). Tedate overlaps with existing product and design skills such as [Impeccable](https://github.com/pbakaus/impeccable), [gstack](https://github.com/garrytan/gstack) and PM skill packs. Tedate only hands off to skills you have installed, and you decide whether to install one.
+- **What it reads and writes.** It reads your project files, git history and any analytics you point it to, and may ask your agent to look up public sources. It writes a decision record only with your OK. It ships no scripts and sends no data anywhere itself; sending your idea to a third-party service needs your yes.
 - **Scope is product judgment.** It does not manage releases, version numbers or merge conflicts, run channel-specific marketing tactics, or produce PRDs or roadmaps.
 - **You stay in charge of consequential actions.** It is instructed not to spend money, publish or deploy without your explicit yes, and never to contact people for you. These are prompt rules, not technical safeguards.
 

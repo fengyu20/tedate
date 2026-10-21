@@ -75,53 +75,57 @@ Tedate は、こうした場面で使うための skill です。今何が重要
 
 ## インストール
 
-このリポジトリをクローンするか ZIP でダウンロードし、`SKILL.md` のあるフォルダを開いてください。
+### Claude Code（プラグイン）
+
+```bash
+claude plugin marketplace add fengyu20/tedate
+claude plugin install tedate@tedate
+```
+
+新しいセッションで次のように入力します（プラグインの skill には、プラグイン名が接頭辞として付きます）。
+
+```text
+/tedate:tedate このページ、何かしっくりこないのですが、理由が分かりません。
+```
+
+リクエストが skill の説明に合う場合は、自動で呼び出されることもあります。
+
+### または skill フォルダをコピーする（Claude Code または Codex）
+
+このリポジトリをクローンするか ZIP でダウンロードし、`skills/tedate` を skills ディレクトリにコピーします。フォルダ名は `tedate` のままにしてください。
 
 ```bash
 git clone https://github.com/fengyu20/tedate.git
 cd tedate
 ```
 
-`SKILL.md`、`references/`、`LICENSE` をまとめてコピーします。コピー先のフォルダ名は `tedate` にする必要があります。
-
-### Claude Code
+Claude Code:
 
 ```bash
-mkdir -p ~/.claude/skills/tedate
-cp -R SKILL.md LICENSE references ~/.claude/skills/tedate/
+mkdir -p ~/.claude/skills
+cp -R skills/tedate ~/.claude/skills/
 ```
 
-新しいセッションで次のように入力します。
+続けて `/tedate このページ、何かしっくりこないのですが、理由が分かりません。` と入力します。
 
-```text
-/tedate このページ、何かしっくりこないのですが、理由が分かりません。
-```
-
-リクエストが skill の説明に合う場合は、自動で呼び出されることもあります。
-
-### Codex
+Codex:
 
 ```bash
-mkdir -p ~/.agents/skills/tedate
-cp -R SKILL.md LICENSE references ~/.agents/skills/tedate/
+mkdir -p ~/.agents/skills
+cp -R skills/tedate ~/.agents/skills/
 ```
 
-続けて次のように入力します。
-
-```text
-$tedate このページ、何かしっくりこないのですが、理由が分かりません。
-```
-
-表示されない場合は、Codex を再起動してください。
+続けて `$tedate このページ、何かしっくりこないのですが、理由が分かりません。` と入力します。表示されない場合は、Codex を再起動してください。
 
 Tedate は最初に、`advise`、`delegate`、`execute` のいずれかのモードを示します。Tedate が使われたかどうかの目安になりますが、大切なのは、その助言が実際の判断に役立つかどうかです。
 
-更新するときは、クローンしたリポジトリを pull してから、ファイルをもう一度コピーしてください。アンインストールするには、skills ディレクトリから `tedate` フォルダを削除します。
+プラグインを更新するには `claude plugin update tedate@tedate`、アンインストールするには `claude plugin uninstall tedate@tedate` を実行します。フォルダをコピーした場合は、リポジトリを pull して `skills/tedate` をもう一度コピーしてください。アンインストールするには、skills ディレクトリから `tedate` フォルダを削除します。
 
 ## 知っておくべきこと
 
 - **判断を誤ることがあります。** 出典や日付を確認するよう求めても、情報そのものが正しいとは限りません。最終的に決めるのはあなたです。
-- **引き継ぎは環境に依存します。** 他の skill は必須ではなく、引き継ぎ内容に従うかどうかは、使う skill と環境によって変わります。[Tedate が引き継ぐ理由](#ビルドを通して目的を保つ)。Tedate は、[Impeccable](https://github.com/pbakaus/impeccable)、[gstack](https://github.com/garrytan/gstack)、PM skill パックなど、既存のプロダクト系・デザイン系の skill と重なる部分があります。
+- **引き継ぎは環境に依存します。** 他の skill は必須ではなく、引き継ぎ内容に従うかどうかは、使う skill と環境によって変わります。[Tedate が引き継ぐ理由](#ビルドを通して目的を保つ)。Tedate は、[Impeccable](https://github.com/pbakaus/impeccable)、[gstack](https://github.com/garrytan/gstack)、PM skill パックなど、既存のプロダクト系・デザイン系の skill と重なる部分があります。 Tedate は、あなたがインストール済みの skill にだけ引き継ぎ、インストールするかどうかはあなたが決めます。
+- **読み書きする内容。** プロジェクトのファイル、git の履歴、指定された分析データを読み、agent に公開情報を調べさせることがあります。決定の記録は、あなたの了承があるときだけ書きます。スクリプトは含まれず、Tedate 自身がデータをどこかへ送ることはありません。アイデアを外部のサービスに送る場合は、改めてあなたの了承が必要です。
 - **扱うのはプロダクトに関する判断です。** リリース、バージョン番号、マージコンフリクトの管理や、チャネル別のマーケティング施策の実行、PRD やロードマップの作成は行いません。
 - **支払い・公開・デプロイなどの操作を決めるのはあなたです。** 明示的な了承なしに支払い・公開・デプロイを行わず、他の人への連絡は代行しない、というルールが指示されています。これはプロンプト上のルールであり、技術的に操作を制限する仕組みではありません。
 

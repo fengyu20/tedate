@@ -1,0 +1,11 @@
+{
+  "name": "tedate",
+  "version": "0.1.0",
+  "description": "Product judgment: what to build and whether it worked.",
+  "author": { "name": "fengyu20" },
+  "homepage": "https://github.com/fengyu20/tedate",
+  "repository": "https://github.com/fengyu20/tedate",
+  "license": "MIT",
+  "keywords": ["product", "judgment", "decisions", "review"],
+  "icon": "assets/tedate-avatar-512.png"
+}
