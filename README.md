@@ -1,5 +1,7 @@
 ![Tedate. A prompt isn't a product.](assets/tedate-banner-1200x630.png)
 
+**English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
+
 # Tedate
 
 A product-judgment skill for Claude Code and Codex that helps you decide what to build, what to change, and whether the result works.
@@ -59,6 +61,8 @@ Software has a principle: don't repeat yourself. Skills are the same. Good speci
 
 Use an interview skill to explore the idea, a design skill to shape the experience, and an engineering skill to build it. Tedate helps carry the product goal and accepted decisions through those hand-offs, then checks the result against the original intent.
 
+![Tedate carries your goal and accepted decisions into one focused task for a specialist skill (interview, design or engineering), then checks the result against your original goal: if solved, you decide what happens next; if not, Tedate names what is missing and the loop repeats.](assets/tedate-handoff.png)
+
 For example (illustrative), “make this page better” might become a focused design task: give the recipe title a clear visual priority and use the existing card spacing. The review then returns to those same issues on the same page, alongside whether the overall result works.
 
 Small questions can stay small. Other skills are optional; without them, Tedate can still give a recommendation and an actionable task.
@@ -115,7 +119,7 @@ To update, pull the repository if you cloned it, then copy the files again. To u
 ## Good to know
 
 - **Its judgment can be wrong.** Asking for sources and dates does not make the underlying facts correct. You make the call.
-- **Hand-offs depend on your setup.** Other skills are optional, and whether one follows a hand-off depends on that skill and your environment. [Why Tedate hands off](#keep-the-purpose-through-the-build). Tedate overlaps with existing product and design skills such as Impeccable, gstack and PM skill packs.
+- **Hand-offs depend on your setup.** Other skills are optional, and whether one follows a hand-off depends on that skill and your environment. [Why Tedate hands off](#keep-the-purpose-through-the-build). Tedate overlaps with existing product and design skills such as [Impeccable](https://github.com/pbakaus/impeccable), [gstack](https://github.com/garrytan/gstack) and PM skill packs.
 - **Scope is product judgment.** It does not manage releases, version numbers or merge conflicts, run channel-specific marketing tactics, or produce PRDs or roadmaps.
 - **You stay in charge of consequential actions.** It is instructed not to spend money, publish or deploy without your explicit yes, and never to contact people for you. These are prompt rules, not technical safeguards.
 
