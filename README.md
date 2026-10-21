@@ -127,4 +127,10 @@ To update the plugin, run `claude plugin update tedate@tedate`; to uninstall it,
 - **Scope is product judgment.** It does not manage releases, version numbers or merge conflicts, run channel-specific marketing tactics, or produce PRDs or roadmaps.
 - **You stay in charge of consequential actions.** It is instructed not to spend money, publish or deploy without your explicit yes, and never to contact people for you. These are prompt rules, not technical safeguards.
 
+## Background
+
+I build [PYOKO](https://pyoko.jp/?utm_source=github&utm_campaign=tedate-readme), an unofficial guide to the Grutto Pass, a museum pass for Tokyo, mostly together with coding agents. But getting something built didn't settle whether it was the right thing to build. When I let agents change a page on their own, it sometimes became harder to use. I could tell something was wrong, but there was a gap between that feeling and knowing what to change. A task was reported done while the problem that started it was still there. And once the site was live, few people came, which raised a different question: who to reach first, and how to tell whether it worked.
+
+So I started writing down how I wanted those calls made: who the page is for, what evidence will count as done, which decisions we had already made and should keep, and whether the result solved the original problem. Most rules came from a specific run that went wrong, on PYOKO and on a few side projects. Over time, I collected those working notes into Tedate. It is meant to help close that gap: to turn “this feels wrong” into a clearer understanding of the problem and a concrete next step, while you still make the call.
+
 Questions or feedback? [Open an issue](https://github.com/fengyu20/tedate/issues).
