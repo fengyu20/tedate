@@ -69,6 +69,8 @@ Small questions can stay small. Other skills are optional; without them, Tedate 
 
 For work across sessions, Tedate keeps accepted decisions in a short record in your project, written only with your OK. It does not give your agent memory of its own, and another skill may not follow a hand-off.
 
+When installed skills pull your agent different ways, say one insists on tests first and another says ship now and test later, Tedate proposes how to handle it from the decisions you have accepted and carries that into the hand-off task. Where you haven't decided, it recommends an approach for you to accept. If you switch skills, the direction you already confirmed is written into the hand-off task.
+
 [How the hand-offs work](docs/working-with-other-skills.md) · [What the answers look like](docs/outputs.md)
 
 ## Install
